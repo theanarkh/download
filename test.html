@@ -1,0 +1,32 @@
+
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <script src="jq16.js"></script>
+</head>
+<body>
+<a href="javascript:void 0;" id="download">download</a>
+<button type="button" id='btn'>click</button>
+<input type="text" id="test">
+<script type="text/javascript" src="download.js"></script>
+<script type="text/javascript"> 
+//document.domain = 'xxx.yyy';不同源时需要目标页面和iframe有相同的domain
+new Download({
+  url: 'http://localhost/download.php',
+  element: '#btn',
+  callback: function(ret) {
+     console.log(ret)
+  },
+  beforeDownload: function() {
+    return true;
+  },
+  condition: {
+    name: function(){return Math.random()},
+    str: $("#test")
+  }
+})
+</script>
+</body>
+</html>
